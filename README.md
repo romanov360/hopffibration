@@ -56,6 +56,8 @@ h = (2 Re z1 conj z2, 2 Im z1 conj z2, |z1|^2-|z2|^2), a fibre is e^{it}(z1, z2)
 | `hopf_berger.py` | Berger spheres (fibre scaled by s), exact Ricci curvature, the collapsing fibre (Mixmaster / "pancake"), and a labelled numerology check |
 | `hopf_quaternion_rotor.py` | rotors, the SU(2)->SO(3) double cover, the qubit and Bloch sphere, Berry phase = half the solid angle |
 | `hopf_line_bundle.py` | the Hopf fibration **without a principal bundle**: the tautological line bundle, connection and holonomy from the projector alone, three independent holonomy methods, Chern number 1 (see [`HOPF_WITHOUT_PRINCIPAL_BUNDLES.md`](HOPF_WITHOUT_PRINCIPAL_BUNDLES.md)) |
+| `hopf_quaternionic.py` | the quaternionic Hopf fibration S3->S7->S4: right-multiplication fibres, the complex case inside it, instanton number of magnitude 1 |
+| `hopf_theta.py` | the Jacobi theta line bundle on a torus: Chern number 1 by five routes, the Hopf bundle pulled back to T2, and a flat connection whose holonomy is ℤ/12 rather than U(1) (section 6 of the bundles page) |
 | `hopf_division_algebras.py` | the four Hopf fibrations S0->S1, S1->S3, S3->S7, S7->S15 from R, C, H, O by one formula; why the octonionic one is not a principal bundle |
 | `hopf_anim.py` | GIF animations (a fibre sweeping a torus; a qubit rotating), and Blender keyframe helper |
 

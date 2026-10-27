@@ -83,12 +83,44 @@ is why `hopf_quaternion_rotor.py` already found "half the solid angle".
   numerically and with three independent methods.
 * **Not shown**: anything about the Standard Model, ℂ³ and ℂ² fibres, the Higgs, three generations, or the paper's philosophical
   claims (ontological commitment, the coach metaphor and so on). Nothing here tests or supports them.
-* **Abelian case only.** The next natural step is the rank-2 tautological bundle over S⁴ (the quaternionic Hopf fibration
-  S⁷ → S⁴; fibre ℂ², automorphism group SU(2), instanton number 1). **Not done.**
+* **Non-abelian case: topology only.** The rank-2 tautological bundle over S⁴ (the quaternionic Hopf fibration S⁷ → S⁴; fibre ℂ²,
+  automorphism group SU(2)) is in [`hopf_quaternionic.py`](hopf_quaternionic.py). It checks the fibration, and that the instanton number
+  of the projector curvature has magnitude 1 (**Checked**, grid error 1–2 per cent). Non-abelian holonomy along loops in S⁴ (path-ordered,
+  not just a phase) is **Not done**.
 * **No link to the tilings.** There is no connection here with the Spectre or Chair44 beyond the Hopf structure discussed in the
   [Spectre repository](https://github.com/brentharts/spectre) (`HOPF.md`); the paper does not mention tilings.
 
-## 5. References
+## 6. The torus, and when holonomy is smaller than the structure group
+
+[`hopf_theta.py`](hopf_theta.py) moves from S² to the torus T² = ℂ/(ℤ + τℤ). The Hopf bundle's role there is played by the line bundle of
+which the Jacobi function θ₁ is a section: θ₁ is not periodic, but it changes by fixed factors (the transition functions) round the two
+cycles. It is the lowest Landau level of a charge on a torus with one flux quantum. Its Chern number is 1 by five routes (**Checked**):
+| route | result |
+|---|---|
+| (a) zeros, by the argument principle | 1.0000000000 |
+| (b) winding of the transition function θ₁(z+τ)/θ₁(z) | 1.0000000000 |
+| (c) Chern–Weil for the metric e^{−2πy²/Im τ}. Its curvature is constant, so this is an analytic identity summed on a grid. | 1.00000000 |
+| (d) Poincaré–Lelong: the flux of ∇log‖s‖² round the zero is 4π(1 − πr²/Im τ) | agrees to 10⁻⁶ |
+| (e) the Hopf tautological bundle pulled back by a degree-one map T² → S² (lattice FHS) | \|C\| = 1 |
+
+Controls that fail as they should: the opposite-sign metric makes ‖s‖ non-periodic; the even θ₃ vanishes at (1+τ)/2, not 0; a degree-0
+map T² → S² pulls back to C = 0. Line bundles on T² are classified by c₁ (**Standard**). So route (e) says that the theta bundle is the
+Hopf bundle (or its dual, depending on orientation) pulled back to the torus, up to isomorphism.
+
+**Holonomy ≠ structure group.** Section 3 says the structure group U(1) "shows up as the set of holonomy phases". That holds for the
+Hopf bundle because its curvature is nowhere zero. In general, the Ambrose–Singer theorem (**Standard**) says that the curvature generates
+the Lie algebra of the holonomy group. A *flat* connection has a discrete holonomy group, which can be a finite subgroup of U(1). The
+script checks the simplest case: on the trivial bundle over T² with holonomies e(1/12) and 1 round the two cycles, the holonomy group
+has exactly 12 elements.
+
+That is the shape of a result in [cicy](https://github.com/romanov360/CICY), `AlpogeSixSphere.md` Parts IX and XI (computed there, quoted
+here). The flat bundle over the cusp of the six-sphere construction has a holonomy group of index 12 in its symmetry group: the kernel of a
+character χ mod 12. Part XI then exhibits an explicit object carrying χ: F = e(β/12)·θ₁(τ, μ)/η(τ) transforms by exactly e(χ(g)/12) with
+no automorphy factor, so its stabiliser is the holonomy group and F¹² is invariant. In the structure-first language, the inner-product
+fibre fixes U(1) as the *possible* gauge group, while the connection decides how much of it is *realised* as holonomy: all of U(1) for the
+Hopf monopole, ℤ/12 for the cusp. Whether this bears on Gomes's coordination problem is not claimed here.
+
+## 7. References
 
 1. H. Gomes, *Gauge Theory Without Principal Fiber Bundles*, Philosophy of Science **92**(3), 511–527 (2025; online 28 Oct 2024),
    <https://www.cambridge.org/core/services/aop-cambridge-core/content/view/248F68985B0DD811F5AF03F477937347/S0031824824000497a.pdf/gauge_theory_without_principal_fiber_bundles.pdf>
@@ -98,3 +130,6 @@ is why `hopf_quaternion_rotor.py` already found "half the solid angle".
    *Holonomy, the quantum adiabatic theorem, and Berry's phase*, Phys. Rev. Lett. **51** (1983) 2167; T. Kato, *On the adiabatic theorem of
    quantum mechanics*, J. Phys. Soc. Japan **5** (1950) 435; S. Pancharatnam, Proc. Indian Acad. Sci. A **44** (1956) 247. *(cited from memory)*
 4. [`hopf_quaternion_rotor.py`](hopf_quaternion_rotor.py), [`hopf_math.py`](hopf_math.py) in this repository.
+5. D. Mumford, *Tata Lectures on Theta I* (Birkhäuser 1983) for θ₁ and its quasi-periodicity; W. Ambrose and I. M. Singer, *A theorem on
+   holonomy*, Trans. AMS **75** (1953) 428–443; T. Fukui, Y. Hatsugai and H. Suzuki, J. Phys. Soc. Japan **74** (2005) 1674 (lattice Chern
+   number). *(cited from memory)*
